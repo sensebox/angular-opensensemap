@@ -1,5 +1,5 @@
 'use strict';
-/* global getJSONFixture */
+
 describe('angular-opensensemap', function () {
 
   describe('OpenSenseMapProvider', function () {
@@ -40,7 +40,7 @@ describe('angular-opensensemap', function () {
 
     it('should set the api key', function () {
       expect(OpenSenseMapProvider.setApiKey('ABCDEFGHIJKLMNOPQRSTUVWXYZ')).toBe('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
-    })
+    });
   });
 
   describe('OpenSenseMap', function () {
