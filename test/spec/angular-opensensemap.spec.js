@@ -58,6 +58,6 @@ describe('angular-opensensemap', function () {
 
     it('should have a method getBox()', function () {
       expect(OpenSenseMap.getBox).toBeDefined();
-    })
+    });
   });
 });

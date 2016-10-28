@@ -29,7 +29,7 @@
        */
       settings.apiBaseUrl = 'https://api.opensensemap.org';
 
-      this.$get = ['$q', '$http', '$window', function ($q, $http, $window) {
+      this.$get = ['$q', '$http', function ($q, $http) {
         function NgOpenSenseMap () {
           this.boxId = settings.boxId;
           this.apiKey = settings.apiKey;
