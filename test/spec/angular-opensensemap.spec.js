@@ -1,5 +1,5 @@
 'use strict';
-
+/* global getJSONFixture */
 describe('angular-opensensemap', function () {
 
   describe('OpenSenseMapProvider', function () {
