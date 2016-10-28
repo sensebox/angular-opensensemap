@@ -28,6 +28,19 @@ describe('angular-opensensemap', function () {
     it('should have a method setApiKey()', function () {
       expect(OpenSenseMapProvider.setApiKey).toBeDefined();
     });
+
+    it('should set the box id', function () {
+      expect(OpenSenseMapProvider.setBoxId('ABCDEFGHIJKLMNOPQRSTUVWXYZ')).toBe('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    });
+
+    it('should get the box id', function () {
+      OpenSenseMapProvider.setBoxId('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+      expect(OpenSenseMapProvider.getBoxId()).toBe('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    });
+
+    it('should set the api key', function () {
+      expect(OpenSenseMapProvider.setApiKey('ABCDEFGHIJKLMNOPQRSTUVWXYZ')).toBe('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    })
   });
 
   describe('OpenSenseMap', function () {
