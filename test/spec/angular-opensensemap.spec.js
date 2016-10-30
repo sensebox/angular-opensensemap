@@ -1,5 +1,5 @@
 'use strict';
-
+/* global getJSONFixture */
 describe('angular-opensensemap', function () {
 
   describe('OpenSenseMapProvider', function () {
@@ -71,6 +71,53 @@ describe('angular-opensensemap', function () {
 
     it('should have a method getBox()', function () {
       expect(OpenSenseMap.getBox).toBeDefined();
+    });
+
+    describe('Boxes', function () {
+      var $httpBackend;
+      var OpenSenseMap;
+      var api = 'https://api.opensensemap.org';
+
+      beforeEach(inject(function(_OpenSenseMap_, _$httpBackend_) {
+        OpenSenseMap = _OpenSenseMap_;
+        $httpBackend = _$httpBackend_;
+        jasmine.getJSONFixtures().fixturesPath='base/test/mock';
+      }));
+
+      describe('OpenSenseMap.getBoxes', function () {
+
+        it('should make an ajax call to https://api.opensensemap.org/boxes', function () {
+
+          $httpBackend.when('GET', api + '/boxes').respond(getJSONFixture('boxes.json'));
+
+          expect(OpenSenseMap.getBoxes()).toBeDefined();
+        });
+      });
+
+      describe('OpenSenseMap.getBox', function () {
+
+        it('should make an ajax call to https://api.opensensemap.org/boxes/57000b8745fd40c8196ad04c', function () {
+
+          $httpBackend.when('GET', api + '/boxes/57000b8745fd40c8196ad04c').respond(getJSONFixture('box.json'));
+
+          expect(OpenSenseMap.getBox('57000b8745fd40c8196ad04c')).toBeDefined();
+        });
+
+        it('should resolve to an object of a box', function () {
+          $httpBackend.when('GET', api + '/boxes/57000b8745fd40c8196ad04c').respond(200, getJSONFixture('box.json'));
+
+          var result;
+          OpenSenseMap
+            .getBox('57000b8745fd40c8196ad04c')
+            .then(function (data) {
+              result = data;
+            });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+          expect(result instanceof Object).toBeTruthy();
+        });
+      });
     });
   });
 });

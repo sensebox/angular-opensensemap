@@ -1,0 +1,73 @@
+{
+  "_id": "57000b8745fd40c8196ad04c",
+  "boxType": "fixed",
+  "createdAt": "2016-06-02T11:22:51.817Z",
+  "exposure": "outdoor",
+  "grouptag": "",
+  "image": "57000b8745fd40c8196ad04c.png?1466435154159",
+  "name": "Oststr/Mauritzsteinpfad",
+  "updatedAt": "2016-10-30T12:06:27.322Z",
+  "sensors": [
+    {
+      "_id": "57000b8745fd40c8196ad04e",
+      "lastMeasurement": "5815e2430d0746001203308b",
+      "sensorType": "VEML6070",
+      "title": "UV-Intensität",
+      "unit": "μW/cm²"
+    },
+    {
+      "_id": "57000b8745fd40c8196ad04f",
+      "lastMeasurement": "5815e2430d0746001203308a",
+      "sensorType": "TSL45315",
+      "title": "Beleuchtungsstärke",
+      "unit": "lx"
+    },
+    {
+      "_id": "57000b8745fd40c8196ad050",
+      "lastMeasurement": "5815e2430d07460012033087",
+      "sensorType": "BMP280",
+      "title": "Luftdruck",
+      "unit": "hPa"
+    },
+    {
+      "_id": "57000b8745fd40c8196ad051",
+      "lastMeasurement": "5815e2430d07460012033088",
+      "sensorType": "HDC1008",
+      "title": "rel. Luftfeuchte",
+      "unit": "%"
+    },
+    {
+      "_id": "57000b8745fd40c8196ad052",
+      "lastMeasurement": "5815e2430d07460012033089",
+      "sensorType": "HDC1008",
+      "title": "Temperatur",
+      "unit": "°C"
+    },
+    {
+      "_id": "576996be6c521810002479dd",
+      "sensorType": "WiFi",
+      "unit": "dBm",
+      "title": "Wifi-Stärke",
+      "lastMeasurement": "5815e2430d0746001203308c"
+    },
+    {
+      "_id": "579f9eae68b4a2120069edc8",
+      "sensorType": "VCC",
+      "unit": "V",
+      "title": "Eingangsspannung",
+      "lastMeasurement": "5815e2430d0746001203308d"
+    }
+  ],
+  "loc": [
+    {
+      "geometry": {
+        "coordinates": [
+          7.64568,
+          51.962372
+        ],
+        "type": "Point"
+      },
+      "type": "feature"
+    }
+  ]
+}
