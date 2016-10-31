@@ -24,6 +24,15 @@
         return settings.apiKey;
       };
 
+      var utils = {};
+      utils.toQueryString = function (obj) {
+        var parts = [];
+        angular.forEach(obj, function (value, key) {
+          this.push(encodeURIComponent(key) + '=' + encodeURIComponent(value));
+        }, parts);
+        return parts.join('&');
+      };
+
       /**
        * API Base URL
        */
@@ -35,6 +44,7 @@
           this.apiBaseUrl = settings.apiBaseUrl;
           this.boxId = settings.boxId;
           this.apiKey = settings.apiKey;
+          this.toQueryString = utils.toQueryString;
         }
 
         NgOpenSenseMap.prototype = {
@@ -57,11 +67,34 @@
             });
             return deferred.promise;
           },
+
+          _auth: function () {
+            var auth = {
+              'X-ApiKey': this.apiKey
+            };
+
+            return auth;
+          },
+
+          /**
+           * Boxes
+           */
           getBoxes: function () {
             return this.api('/boxes');
           },
           getBox: function (boxId) {
             return this.api('/boxes/' + boxId);
+          },
+
+          /**
+           * Users
+           */
+          setApiKey: function (apiKey) {
+            this.apiKey = apiKey;
+            return apiKey;
+          },
+          validateApiKey: function (boxId) {
+            return this.api('/users/' + boxId, 'GET', null, null, this._auth());
           }
         };
 

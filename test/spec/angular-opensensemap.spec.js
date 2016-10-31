@@ -73,7 +73,23 @@ describe('angular-opensensemap', function () {
       expect(OpenSenseMap.getBox).toBeDefined();
     });
 
-    describe('Boxes', function () {
+    it('should turn an object into a query string', function () {
+      expect(OpenSenseMap.toQueryString({a: 't', b: '4', c: 'q'})).toBe('a=t&b=4&c=q');
+    });
+
+    it('should have a method validateAPiKey', function () {
+      expect(OpenSenseMap.validateApiKey).toBeDefined();
+    });
+
+    it('should have a method setApiKey()', function () {
+      expect(OpenSenseMap.setApiKey).toBeDefined();
+    });
+
+    it('should set the api key', function () {
+      expect(OpenSenseMap.setApiKey('ABCDEFGHIJKLMNOPQRSTUVWXYZ')).toBe('ABCDEFGHIJKLMNOPQRSTUVWXYZ');
+    });
+
+    describe('OpenSenseMap.api', function () {
       var $httpBackend;
       var OpenSenseMap;
       var api = 'https://api.opensensemap.org';
@@ -82,6 +98,41 @@ describe('angular-opensensemap', function () {
         OpenSenseMap = _OpenSenseMap_;
         $httpBackend = _$httpBackend_;
         jasmine.getJSONFixtures().fixturesPath='base/test/mock';
+      }));
+
+      afterEach(function () {
+        $httpBackend.verifyNoOutstandingExpectation();
+        $httpBackend.verifyNoOutstandingRequest();
+      });
+
+      it('should call the api with headers', function () {
+        $httpBackend.when('GET', api + '/users/57000b8745fd40c8196ad04c', null, 
+          function (headers) {
+            return headers['X-ApiKey'] === 'TESTING';
+          }
+        ).respond({});
+
+        var result;
+        OpenSenseMap.api('/users/57000b8745fd40c8196ad04c', 'GET', null, null, {
+          'X-ApiKey': 'TESTING'
+        }).then(function (data) {
+          result = data;
+        });
+
+        $httpBackend.flush();
+
+        expect(result).toBeDefined();
+      });
+    });
+
+    describe('Boxes', function () {
+      var $httpBackend;
+      var OpenSenseMap;
+      var api = 'https://api.opensensemap.org';
+
+      beforeEach(inject(function(_OpenSenseMap_, _$httpBackend_) {
+        OpenSenseMap = _OpenSenseMap_;
+        $httpBackend = _$httpBackend_;
       }));
 
       describe('OpenSenseMap.getBoxes', function () {
@@ -116,6 +167,59 @@ describe('angular-opensensemap', function () {
           $httpBackend.flush();
           expect(result).toBeDefined();
           expect(result instanceof Object).toBeTruthy();
+        });
+
+        it('should reject the promise and respond with 404 - NotFoundError', function () {
+          $httpBackend.when('GET', api + '/boxes/57000b8745fd40c8196ad04d').respond(404, getJSONFixture('box.error.json'));
+
+          var result;
+          OpenSenseMap.getBox('57000b8745fd40c8196ad04d').then(function () {
+          }, function (reason) {
+            result = reason;
+          });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+          expect(result instanceof Object).toBeTruthy();
+          expect(result.code).toBe('NotFoundError');
+        });
+
+        it('should reject the promise and respond with 400 - BadRequestError', function () {
+          $httpBackend.when('GET', api + '/boxes/57000b8745fd40c8').respond(400, getJSONFixture('box.invalid-mongo-objectid.json'));
+
+          var result;
+          OpenSenseMap.getBox('57000b8745fd40c8').then(function () {
+          }, function (reason) {
+            result = reason;
+          });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+          expect(result instanceof Object).toBeTruthy();
+          expect(result.code).toBe('BadRequestError');
+        });
+      });
+    });
+
+    describe('Users', function () {
+      var $httpBackend;
+      var OpenSenseMap;
+
+      beforeEach(inject(function (_OpenSenseMap_, _$httpBackend_) {
+        $httpBackend = _$httpBackend_;
+        OpenSenseMap = _OpenSenseMap_;
+      }));
+
+      describe('OpenSenseMap.validateApiKey', function () {
+        it('should validate the apikey for a box', function () {
+          spyOn(OpenSenseMap, 'api');
+
+          OpenSenseMap.setApiKey('TESTING');
+
+          OpenSenseMap.validateApiKey('57000b8745fd40c8');
+
+          expect(OpenSenseMap.api).toHaveBeenCalled();
+          expect(OpenSenseMap.api).toHaveBeenCalledWith('/users/57000b8745fd40c8', 'GET', null, null, {'X-ApiKey': 'TESTING'});
         });
       });
     });
