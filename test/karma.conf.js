@@ -57,10 +57,19 @@ module.exports = function(config) {
 
     // optionally, configure the reporter
     coverageReporter: {
-      type : 'lcovonly',
-      dir : 'test/coverage/',
-      subdir: '.',
-      file : 'lcov.info'
+      reporters : [
+        {
+          type : 'lcov',
+          dir : 'test/coverage/',
+          subdir: '.',
+          file : 'lcov.info'
+        },
+        {
+          type: 'text',
+          dir: 'test/coverage/',
+          subdir: '.'
+        }
+      ]
     },
 
     // Which plugins to enable
