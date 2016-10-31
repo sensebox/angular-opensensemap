@@ -11,5 +11,4 @@ before_script:
   - bower install
   - grunt
 after_script:
-  - npm run codecov
   - npm run coveralls
