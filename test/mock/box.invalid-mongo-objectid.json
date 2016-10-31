@@ -1,0 +1,4 @@
+{
+  "code": "BadRequestError",
+  "message": "Parameter :boxId is not valid"
+}
