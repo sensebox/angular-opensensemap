@@ -14,6 +14,7 @@ module.exports = function (grunt) {
     // Settings
     app: {
       src: 'src',
+      example: 'examples',
       dist: 'dist'
     },
 
@@ -24,6 +25,47 @@ module.exports = function (grunt) {
       build: {
         src: '<%= app.src %>/<%= pkg.name %>.js',
         dest: '<%= app.dist %>/<%= pkg.name %>.min.js'
+      }
+    },
+
+    copy: {
+      example: {
+        files: [{
+          expand: true,
+          dot: true,
+          cwd: '<%= app.src %>',
+          dest: '<%= app.example %>',
+          src: [
+            '*.js'
+          ]
+        }]
+      }
+    },
+
+    watch: {
+      scripts: {
+        files: ['<%= app.src %>/angular-opensensemap.js'],
+        tasks: ['jshint:all', 'copy:example'],
+        options: {
+          livereload: true
+        }
+      }
+    },
+
+    connect: {
+      options: {
+        port: 9000,
+        hostname: 'localhost',
+        livereload: 35729,
+        base: 'examples'
+      },
+      test: {
+        options: {
+          open: true,
+          base: [
+            'examples'
+          ]
+        }
       }
     },
 
@@ -69,6 +111,12 @@ module.exports = function (grunt) {
       }
     }
   });
+
+  grunt.registerTask('serve', [
+    'copy:example',
+    'connect:test',
+    'watch'
+  ]);
 
   grunt.registerTask('test', [
     'jshint',
