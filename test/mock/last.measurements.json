@@ -1,0 +1,89 @@
+{
+  "_id": "57000b8745fd40c8196ad04c",
+  "sensors": [
+    {
+      "_id": "57000b8745fd40c8196ad04e",
+      "lastMeasurement": {
+        "_id": "5819c660c5f60d0011b76f61",
+        "value": "160",
+        "sensor_id": "57000b8745fd40c8196ad04e",
+        "createdAt": "2016-11-02T10:56:32.585Z"
+      },
+      "sensorType": "VEML6070",
+      "title": "UV-Intensität",
+      "unit": "μW/cm²"
+    },
+    {
+      "_id": "57000b8745fd40c8196ad04f",
+      "lastMeasurement": {
+        "_id": "5819c660c5f60d0011b76f60",
+        "value": "5496",
+        "sensor_id": "57000b8745fd40c8196ad04f",
+        "createdAt": "2016-11-02T10:56:32.585Z"
+      },
+      "sensorType": "TSL45315",
+      "title": "Beleuchtungsstärke",
+      "unit": "lx"
+    },
+    {
+      "_id": "57000b8745fd40c8196ad050",
+      "lastMeasurement": {
+        "_id": "5819c660c5f60d0011b76f5d",
+        "value": "1010.31",
+        "sensor_id": "57000b8745fd40c8196ad050",
+        "createdAt": "2016-11-02T10:56:32.585Z"
+      },
+      "sensorType": "BMP280",
+      "title": "Luftdruck",
+      "unit": "hPa"
+    },
+    {
+      "_id": "57000b8745fd40c8196ad051",
+      "lastMeasurement": {
+        "_id": "5819c660c5f60d0011b76f5e",
+        "value": "83.41",
+        "sensor_id": "57000b8745fd40c8196ad051",
+        "createdAt": "2016-11-02T10:56:32.585Z"
+      },
+      "sensorType": "HDC1008",
+      "title": "rel. Luftfeuchte",
+      "unit": "%"
+    },
+    {
+      "_id": "57000b8745fd40c8196ad052",
+      "lastMeasurement": {
+        "_id": "5819c660c5f60d0011b76f5f",
+        "value": "10.38",
+        "sensor_id": "57000b8745fd40c8196ad052",
+        "createdAt": "2016-11-02T10:56:32.585Z"
+      },
+      "sensorType": "HDC1008",
+      "title": "Temperatur",
+      "unit": "°C"
+    },
+    {
+      "_id": "576996be6c521810002479dd",
+      "sensorType": "WiFi",
+      "unit": "dBm",
+      "title": "Wifi-Stärke",
+      "lastMeasurement": {
+        "_id": "5819c660c5f60d0011b76f62",
+        "value": "-71",
+        "sensor_id": "576996be6c521810002479dd",
+        "createdAt": "2016-11-02T10:56:32.585Z"
+      }
+    },
+    {
+      "_id": "579f9eae68b4a2120069edc8",
+      "sensorType": "VCC",
+      "unit": "V",
+      "title": "Eingangsspannung",
+      "lastMeasurement": {
+        "_id": "5819c660c5f60d0011b76f63",
+        "value": "2.72",
+        "sensor_id": "579f9eae68b4a2120069edc8",
+        "createdAt": "2016-11-02T10:56:32.585Z"
+      }
+    }
+  ]
+}

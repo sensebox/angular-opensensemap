@@ -87,6 +87,13 @@
           },
 
           /**
+           * Measurements
+           */
+          getLastMeasurements: function (boxId) {
+            return this.api('/boxes/' + boxId + '/sensors');
+          },
+
+          /**
            * Users
            */
           setApiKey: function (apiKey) {
@@ -95,6 +102,13 @@
           },
           validateApiKey: function (boxId) {
             return this.api('/users/' + boxId, 'GET', null, null, this._auth());
+          },
+
+          /**
+           * Stats
+           */
+          getStats: function () {
+            return this.api('/stats');
           }
         };
 

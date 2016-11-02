@@ -44,7 +44,7 @@ module.exports = function (grunt) {
 
     watch: {
       scripts: {
-        files: ['<%= app.src %>/angular-opensensemap.js'],
+        files: ['<%= app.src %>/angular-opensensemap.js', '<%= app.example %>/main.controller.js'],
         tasks: ['jshint:all', 'copy:example'],
         options: {
           livereload: true
@@ -112,7 +112,7 @@ module.exports = function (grunt) {
     }
   });
 
-  grunt.registerTask('serve', [
+  grunt.registerTask('example', [
     'copy:example',
     'connect:test',
     'watch'

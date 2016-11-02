@@ -17,4 +17,9 @@ angular
       console.log(data);
     });
 
+    // Get openSenseMap database statistics
+    OpenSenseMap.getStats().then(function (data){
+      console.log('=================== Database statistics ===================');
+      console.log(data);
+    });
   }]);

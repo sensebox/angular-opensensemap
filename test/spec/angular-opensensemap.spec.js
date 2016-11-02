@@ -141,7 +141,16 @@ describe('angular-opensensemap', function () {
 
           $httpBackend.when('GET', api + '/boxes').respond(getJSONFixture('boxes.json'));
 
-          expect(OpenSenseMap.getBoxes()).toBeDefined();
+          var result;
+          OpenSenseMap
+            .getBoxes()
+            .then(function (data) {
+              result = data;
+            });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+          expect(result instanceof Array).toBeTruthy();
         });
       });
 
@@ -204,6 +213,7 @@ describe('angular-opensensemap', function () {
     describe('Users', function () {
       var $httpBackend;
       var OpenSenseMap;
+      var api = 'https://api.opensensemap.org';
 
       beforeEach(inject(function (_OpenSenseMap_, _$httpBackend_) {
         $httpBackend = _$httpBackend_;
@@ -220,6 +230,99 @@ describe('angular-opensensemap', function () {
 
           expect(OpenSenseMap.api).toHaveBeenCalled();
           expect(OpenSenseMap.api).toHaveBeenCalledWith('/users/57000b8745fd40c8', 'GET', null, null, {'X-ApiKey': 'TESTING'});
+        });
+
+        it('should resolve the promise and respond that the ApiKey is valid with 200 - Authorized', function () {
+          $httpBackend.when('GET', api + '/users/57000b8745fd40c8').respond(200, getJSONFixture('user.json'));
+
+          OpenSenseMap.setApiKey('TESTING');
+
+          var result;
+          OpenSenseMap
+            .validateApiKey('57000b8745fd40c8')
+            .then(function (data) {
+              result = data;
+            });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+          expect(result instanceof Object).toBeTruthy();
+          expect(result.code).toBe('Authorized');
+        });
+
+        it('should resolve the promise and respond that the ApiKey is invalid with 403 - NotAuthorized', function () {
+          $httpBackend.when('GET', api + '/users/57000b8745fd40c8').respond(404, getJSONFixture('user.invalid-apikey.json'));
+
+          OpenSenseMap.setApiKey('TESTING2');
+
+          var result;
+          OpenSenseMap
+            .validateApiKey('57000b8745fd40c8')
+            .then(function () {}, function (reason) {
+              result = reason;
+            });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+          expect(result instanceof Object).toBeTruthy();
+          expect(result.code).toBe('NotAuthorized');
+        });
+      });
+    });
+
+    describe('Measurements', function () {
+      var $httpBackend;
+      var OpenSenseMap;
+      var api = 'https://api.opensensemap.org';
+
+      beforeEach(inject(function (_OpenSenseMap_, _$httpBackend_) {
+        $httpBackend = _$httpBackend_;
+        OpenSenseMap = _OpenSenseMap_;
+      }));
+
+      describe('OpenSenseMap.getLastMeasurements', function () {
+        it('should get the last measurements for a single box', function () {
+          $httpBackend.when('GET', api + '/boxes/57000b8745fd40c8/sensors').respond(200, getJSONFixture('last.measurements.json'));
+
+          var result;
+          OpenSenseMap
+            .getLastMeasurements('57000b8745fd40c8')
+            .then(function (data) {
+              result = data;
+            });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+          expect(result instanceof Object).toBeTruthy();
+          expect(result.sensors instanceof Array).toBeTruthy();
+        });
+      });
+    });
+
+    describe('Stats', function () {
+      var $httpBackend;
+      var OpenSenseMap;
+      var api = 'https://api.opensensemap.org';
+
+      beforeEach(inject(function (_OpenSenseMap_, _$httpBackend_) {
+        $httpBackend = _$httpBackend_;
+        OpenSenseMap = _OpenSenseMap_;
+      }));
+
+      describe('OpenSenseMap.getStats', function () {
+        it('should get statistics about the database', function () {
+          $httpBackend.when('GET', api + '/stats').respond(200, getJSONFixture('stats.json'));
+
+          var result;
+          OpenSenseMap
+            .getStats()
+            .then(function (data) {
+              result = data;
+            });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+          expect(result instanceof Array).toBeTruthy();
         });
       });
     });
