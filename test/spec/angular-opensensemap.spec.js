@@ -73,6 +73,26 @@ describe('angular-opensensemap', function () {
       expect(OpenSenseMap.getBox).toBeDefined();
     });
 
+    it('should have a method getScript()', function () {
+      expect(OpenSenseMap.getScript).toBeDefined();
+    });
+
+    it('should have a method deleteBox()', function () {
+      expect(OpenSenseMap.deleteBox).toBeDefined();
+    });
+
+    it('should have a method getLastMeasurements()', function () {
+      expect(OpenSenseMap.getLastMeasurements).toBeDefined();
+    });
+
+    it('should have a method postNewMeasurement', function () {
+      expect(OpenSenseMap.deleteBox).toBeDefined();
+    });
+
+    it('should have a method getMeasurements', function () {
+      expect(OpenSenseMap.getMeasurements).toBeDefined();
+    });
+
     it('should turn an object into a query string', function () {
       expect(OpenSenseMap.toQueryString({a: 't', b: '4', c: 'q'})).toBe('a=t&b=4&c=q');
     });
@@ -206,6 +226,44 @@ describe('angular-opensensemap', function () {
           expect(result).toBeDefined();
           expect(result instanceof Object).toBeTruthy();
           expect(result.code).toBe('BadRequestError');
+        });
+      });
+
+      describe('OpenSenseMap.getScript', function () {
+        it('should return the arduino script of the box', function () {
+          $httpBackend.when('GET', api + '/boxes/57000b8745fd40c8196ad04d/script').respond(200, getJSONFixture('script.json'));
+
+          OpenSenseMap.setApiKey('TESTING');
+
+          var result;
+          OpenSenseMap
+            .getScript('57000b8745fd40c8196ad04d')
+            .then(function (data) {
+              result = data;
+            });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+        });
+      });
+
+      describe('OpenSenseMap.deleteBox', function () {
+        it('should delete a box and all its measurements', function () {
+          $httpBackend.when('DELETE', api + '/boxes/57000b8745fd40c8196ad04d').respond(200, getJSONFixture('box.delete.json'));
+
+          OpenSenseMap.setApiKey('TESTING');
+
+          var result;
+          OpenSenseMap
+            .deleteBox('57000b8745fd40c8196ad04d')
+            .then(function (data) {
+              result = data;
+            });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+          expect(result instanceof Object).toBeTruthy();
+          expect(result.code).toBe('');
         });
       });
     });

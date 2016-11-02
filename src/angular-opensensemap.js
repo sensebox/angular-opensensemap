@@ -85,12 +85,24 @@
           getBox: function (boxId) {
             return this.api('/boxes/' + boxId);
           },
+          getScript: function (boxId) {
+            return this.api('/boxes/' + boxId + '/script', 'GET', null, null, this._auth());
+          },
+          deleteBox: function (boxId) {
+            return this.api('/boxes/' + boxId, 'DELETE', null, null, this._auth());
+          },
 
           /**
            * Measurements
            */
           getLastMeasurements: function (boxId) {
             return this.api('/boxes/' + boxId + '/sensors');
+          },
+          postNewMeasurement: function (boxId) {
+            return this.api('/boxes/' + boxId, 'POST', null, null, this._auth());
+          },
+          getMeasurements: function (boxId) {
+            return this.api('/boxes/' + boxId + '/data', 'GET', null, {});
           },
 
           /**
