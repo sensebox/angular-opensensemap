@@ -88,6 +88,12 @@
           getScript: function (boxId) {
             return this.api('/boxes/' + boxId + '/script', 'GET', null, null, this._auth());
           },
+          createBox: function (data) {
+            return this.api('/boxes', 'POST', null, data);
+          },
+          updateBox: function (boxId, data) {
+            return this.api('/boxes/' + boxId, 'PUT', null, data, this._auth());
+          },
           deleteBox: function (boxId) {
             return this.api('/boxes/' + boxId, 'DELETE', null, null, this._auth());
           },

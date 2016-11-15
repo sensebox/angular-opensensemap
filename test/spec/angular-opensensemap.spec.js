@@ -1,4 +1,5 @@
 'use strict';
+
 /* global getJSONFixture */
 describe('angular-opensensemap', function () {
 
@@ -75,6 +76,14 @@ describe('angular-opensensemap', function () {
 
     it('should have a method getScript()', function () {
       expect(OpenSenseMap.getScript).toBeDefined();
+    });
+
+    it('should have a method createBox()', function () {
+      expect(OpenSenseMap.createBox).toBeDefined();
+    });
+
+    it('should have a method updateBox()', function () {
+      expect(OpenSenseMap.updateBox).toBeDefined();
     });
 
     it('should have a method deleteBox()', function () {
@@ -244,6 +253,23 @@ describe('angular-opensensemap', function () {
 
           $httpBackend.flush();
           expect(result).toBeDefined();
+        });
+      });
+
+      describe('OpenSenseMap.createBox', function () {
+        it('should create a new box', function () {
+          $httpBackend.when('POST', api + '/boxes').respond(200, getJSONFixture('box.create.response.json'));
+
+          var result;
+          OpenSenseMap
+            .createBox(getJSONFixture('box.create.request.json'))
+            .then(function (data) {
+              result = data;
+            });
+
+          $httpBackend.flush();
+          expect(result).toBeDefined();
+          expect(result instanceof Object).toBeTruthy();
         });
       });
 

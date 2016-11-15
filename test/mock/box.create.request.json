@@ -1,0 +1,36 @@
+{
+  "id": "",
+  "name": "Test",
+  "model": "homeEthernet",
+  "boxType": "fixed",
+  "sensors": [],
+  "tag": "",
+  "exposure": "indoor",
+  "orderID": "581af557affdd286a892e14d",
+  "loc": [
+    {
+      "type": "feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          7.595789,
+          51.969037
+        ]
+      }
+    }
+  ],
+  "apikey": "581af557affdd286a892e14d",
+  "user": {
+    "firstname": "Matthias",
+    "lastname": "Pfeil",
+    "email": "matthias.pfeil@uni-muenster.de",
+    "lang": "de_DE"
+  },
+  "mqtt": {
+    "url": "http://sensebox.de",
+    "topic": "temperature",
+    "messageFormat": "json",
+    "decodeOptions": "",
+    "connectionOptions": ""
+  }
+}
