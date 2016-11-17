@@ -10,7 +10,7 @@ npm run prepublish
 
 cp src/angular-opensensemap.js dist/
 
-git add dist/angular-opensensemap.js dist/angular-opensensemap-api.js -f
+git add dist/angular-opensensemap.js dist/angular-opensensemap.min.js -f
 
 git commit -m "v$VERSION"
 
