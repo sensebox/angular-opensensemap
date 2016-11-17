@@ -1,6 +1,6 @@
 {
   "name": "angular-opensensemap",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Angular Service to connect to openSenseMap API",
   "main": "src/angular-opensensemap.js",
   "engines": {
