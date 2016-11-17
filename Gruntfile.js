@@ -123,7 +123,7 @@ module.exports = function (grunt) {
     'karma'
   ]);
 
-  grunt.registerTask('default', [
+  grunt.registerTask('publish', [
     'clean:dist',
     'jshint',
     'uglify'

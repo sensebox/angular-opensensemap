@@ -10,7 +10,8 @@
     "test": "grunt test",
     "codecov": "codecov",
     "coveralls": "cat ./test/coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
-    "prepublish": "grunt"
+    "prepublish": "grunt publish",
+    "release": "./release.sh"
   },
   "repository": {
     "type": "git",
