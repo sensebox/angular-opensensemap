@@ -19,3 +19,4 @@ deploy:
   file: dist/angular-opensensemap.min.js
   on:
     repo: sensebox/angular-opensensemap
+    tags: true
