@@ -6,6 +6,8 @@ VERSION=$(node --eval "console.log(require('./package.json').version);")
 
 npm test || exit 1
 
+npm run prepublish
+
 cp src/angular-opensensemap.js dist/
 
 git add dist/angular-opensensemap.js dist/angular-opensensemap-api.js -f
