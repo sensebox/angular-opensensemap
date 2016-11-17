@@ -10,7 +10,6 @@ before_script:
 - grunt
 after_script:
 - npm run coveralls
-after_success: grunt
 before_deploy: "echo 'ready?'"
 deploy:
   provider: releases
