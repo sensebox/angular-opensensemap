@@ -1,7 +1,7 @@
 {
   "name": "angular-opensensemap",
   "description": "Angular Service to connect to openSenseMap API",
-  "version": "1.0.1",
+  "version": "1.0.0",
   "main": "./dist/angular-opensensemap.js",
   "authors": [
     "Matthias <matthias.pfeil@wwu.de>"
