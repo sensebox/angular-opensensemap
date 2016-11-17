@@ -256,22 +256,22 @@ describe('angular-opensensemap', function () {
         });
       });
 
-      describe('OpenSenseMap.createBox', function () {
-        it('should create a new box', function () {
-          $httpBackend.when('POST', api + '/boxes').respond(200, getJSONFixture('box.create.response.json'));
+      // describe('OpenSenseMap.createBox', function () {
+      //   it('should create a new box', function () {
+      //     $httpBackend.when('POST', api + '/boxes').respond(200, getJSONFixture('box.create.response.json'));
 
-          var result;
-          OpenSenseMap
-            .createBox(getJSONFixture('box.create.request.json'))
-            .then(function (data) {
-              result = data;
-            });
+      //     var result;
+      //     OpenSenseMap
+      //       .createBox(getJSONFixture('box.create.request.json'))
+      //       .then(function (data) {
+      //         result = data;
+      //       });
 
-          $httpBackend.flush();
-          expect(result).toBeDefined();
-          expect(result instanceof Object).toBeTruthy();
-        });
-      });
+      //     $httpBackend.flush();
+      //     expect(result).toBeDefined();
+      //     expect(result instanceof Object).toBeTruthy();
+      //   });
+      // });
 
       describe('OpenSenseMap.deleteBox', function () {
         it('should delete a box and all its measurements', function () {

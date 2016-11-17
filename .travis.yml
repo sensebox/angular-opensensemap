@@ -1,14 +1,21 @@
 language: node_js
 node_js:
-  - 0.10
-  - 0.12
-  - 4
-  - 5
+- 0.1
+- 0.12
+- 4
+- 5
 sudo: false
 before_install: npm install -g grunt-cli
 before_script:
-  - npm i -g bower
-  - bower install
-  - grunt
+- npm i -g bower
+- bower install
+- grunt
 after_script:
-  - npm run coveralls
+- npm run coveralls
+deploy:
+  provider: releases
+  api_key:
+    secure: Q6aXX/RhfgU7Hq8utpVDXxIKYmiBYrkzRp2yN51UHFQdTFoUOKaSXfPI1+JRQIHgTDLgO5VWpVkLLkKtCThY4V7U8JcjbeufXln+mZRFq0ZQyEaOXCw3UEpifnzAVjt2esg/DTsdgKoHG4W/pTBIVdTrjtmaWsJghHWpAnHJ0CaV9ZOV58SkWxCB2VBGYEeXqqEeJ4dWh0Es/msuktjEKL8EU+SgRGiTmD3xwKxhoJt0dNYtBk7mls0+e+CXJd+Xv8B43zxlfniV0D7Vrgwl0ZQ1IuhRdGIsWG346NXFneV992pCR+GKwtLJC/GdXYeV3yHRSOG8Kb708QIa76oJ9dVxFktv4eOkI6ujG3mfnRARmy7FsIvsQPsrxqJJiCRJaDTIEcfdytVrzaR+2S7cZev/htdp0xsfrpBFvIaK05xXBWli/T5hcyPNVp6qZDzvQVzXp/60THiYUok1NTTNwCa0w0skzECR0wfdgn7dhT8S849hehux3JRvynmkizrxvSHgBSIS5h5+cfP9kcDVVOT958Or5WPUDSLSRGWUq40Y9TtnP1sOy0phnybFyqNlCVL4ydhaUc9OEOuZvYx2AhObvQF5t9EOE5G5Om5i1NfqT9DK6zIEaTSoIEaglFnB8r2YUXhDqlz1vRqZL0OldUB8ffQgEuaq8tHOxi2p6oY=
+  file: dist/angular-opensensemap.min.js
+  on:
+    repo: sensebox/angular-opensensemap
