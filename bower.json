@@ -2,7 +2,7 @@
   "name": "angular-opensensemap",
   "description": "Angular Service to connect to openSenseMap API",
   "version": "1.0.1",
-  "main": "./dist/angular-opensensemap.min.js",
+  "main": "./dist/angular-opensensemap.js",
   "authors": [
     "Matthias <matthias.pfeil@wwu.de>"
   ],
@@ -14,7 +14,7 @@
     "osem"
   ],
   "homepage": "https://github.com/sensebox/angular-opensensemap",
-  "private": true,
+  "private": false,
   "ignore": [
     "**/.*",
     "node_modules",
