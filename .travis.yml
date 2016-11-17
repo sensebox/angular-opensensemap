@@ -19,4 +19,5 @@ deploy:
   file: dist/angular-opensensemap.min.js
   overwrite: true
   on:
+    repo: sensebox/angular-opensensemap
     tags: true
