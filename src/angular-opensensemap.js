@@ -38,7 +38,7 @@
        */
       settings.apiBaseUrl = 'https://api.opensensemap.org';
 
-      this.$get = ['$q', '$http', function ($q, $http) {
+      this.$get = ['$http', function ($http) {
 
         function NgOpenSenseMap () {
           this.apiBaseUrl = settings.apiBaseUrl;
@@ -49,9 +49,8 @@
 
         NgOpenSenseMap.prototype = {
           api: function (endpoint, method, params, data, headers) {
-            var deferred = $q.defer();
 
-            $http({
+            return $http({
               url: this.apiBaseUrl + endpoint,
               method: method ? method : 'GET',
               params: params,
@@ -59,13 +58,9 @@
               headers: headers,
               withCredentials: false
             })
-            .success(function (data) {
-              deferred.resolve(data);
-            })
-            .error(function (data) {
-              deferred.reject(data);
+            .then(function (data) {
+              return data;
             });
-            return deferred.promise;
           },
 
           _auth: function () {

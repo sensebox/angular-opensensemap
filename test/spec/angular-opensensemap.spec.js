@@ -135,7 +135,7 @@ describe('angular-opensensemap', function () {
       });
 
       it('should call the api with headers', function () {
-        $httpBackend.when('GET', api + '/users/57000b8745fd40c8196ad04c', null, 
+        $httpBackend.when('GET', api + '/users/57000b8745fd40c8196ad04c', null,
           function (headers) {
             return headers['X-ApiKey'] === 'TESTING';
           }
@@ -179,7 +179,7 @@ describe('angular-opensensemap', function () {
 
           $httpBackend.flush();
           expect(result).toBeDefined();
-          expect(result instanceof Array).toBeTruthy();
+          expect(result instanceof Object).toBeTruthy();
         });
       });
 
@@ -219,7 +219,7 @@ describe('angular-opensensemap', function () {
           $httpBackend.flush();
           expect(result).toBeDefined();
           expect(result instanceof Object).toBeTruthy();
-          expect(result.code).toBe('NotFoundError');
+          expect(result.data.code).toBe('NotFoundError');
         });
 
         it('should reject the promise and respond with 400 - BadRequestError', function () {
@@ -234,7 +234,7 @@ describe('angular-opensensemap', function () {
           $httpBackend.flush();
           expect(result).toBeDefined();
           expect(result instanceof Object).toBeTruthy();
-          expect(result.code).toBe('BadRequestError');
+          expect(result.data.code).toBe('BadRequestError');
         });
       });
 
@@ -289,7 +289,7 @@ describe('angular-opensensemap', function () {
           $httpBackend.flush();
           expect(result).toBeDefined();
           expect(result instanceof Object).toBeTruthy();
-          expect(result.code).toBe('');
+          expect(result.data.code).toBe('');
         });
       });
     });
@@ -331,7 +331,7 @@ describe('angular-opensensemap', function () {
           $httpBackend.flush();
           expect(result).toBeDefined();
           expect(result instanceof Object).toBeTruthy();
-          expect(result.code).toBe('Authorized');
+          expect(result.data.code).toBe('Authorized');
         });
 
         it('should resolve the promise and respond that the ApiKey is invalid with 403 - NotAuthorized', function () {
@@ -349,7 +349,7 @@ describe('angular-opensensemap', function () {
           $httpBackend.flush();
           expect(result).toBeDefined();
           expect(result instanceof Object).toBeTruthy();
-          expect(result.code).toBe('NotAuthorized');
+          expect(result.data.code).toBe('NotAuthorized');
         });
       });
     });
@@ -378,7 +378,7 @@ describe('angular-opensensemap', function () {
           $httpBackend.flush();
           expect(result).toBeDefined();
           expect(result instanceof Object).toBeTruthy();
-          expect(result.sensors instanceof Array).toBeTruthy();
+          expect(result.data.sensors instanceof Array).toBeTruthy();
         });
       });
     });
@@ -406,7 +406,8 @@ describe('angular-opensensemap', function () {
 
           $httpBackend.flush();
           expect(result).toBeDefined();
-          expect(result instanceof Array).toBeTruthy();
+          expect(result instanceof Object).toBeTruthy();
+          expect(result.data instanceof Array).toBeTruthy();
         });
       });
     });
