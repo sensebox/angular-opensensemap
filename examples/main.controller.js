@@ -16,6 +16,11 @@ angular
       console.log('=================== Boxes (single one) ===================');
       console.log(data);
     });
+    // Get latest measurements
+    OpenSenseMap.getLastMeasurements('57000b8745fd40c8196ad04c').then(function (data){
+      console.log('=================== Latest measurements ===================');
+      console.log(data);
+    });
 
     // Get openSenseMap database statistics
     OpenSenseMap.getStats().then(function (data){
